@@ -10,7 +10,7 @@
 
 typedef struct
 {
-    char* word[MAX_WORD_LENGTH];
+    char word[MAX_WORD_LENGTH];
     int occurrence;
 } words;
 
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 }
 
 // Let's code the word reading function first:
-void read_words(const char *filename, words list1[], int *count_pointer)
+void read_words(char *filename, words list1[], int *count_pointer)
 {
     FILE *fp;
 
@@ -81,4 +81,44 @@ int compare (char *word1, char *word2)
     }
 
     return 1; // If it passes both of the checks, we return 1 (positive) here.
+}
+
+// Printing loop to use at the end for outputs.
+void print_end(words list1[], int total)
+{
+    int i;
+
+    for (i = 0; i < total; i++)
+    {
+        printf("%s - %d occurrence(s)\n", list1[i].word, list1[i].occurrence);
+    }
+}
+
+// Essential function to read from the first file and append the list we created.
+void read_paragraph(char *filename, words list1[], int word_count)
+{
+    char word[MAX_WORD_LENGTH];
+    int loop_count;
+    FILE *fp;
+
+    fp = fopen(filename, "r");
+
+    if (fp == NULL)
+    {
+        printf("File error!\n");
+        exit(1);
+    }
+
+    while (fscanf (fp, "%s", word) != EOF) // Taking every single word in the file, one by one.
+    {
+        for (loop_count = 0; loop_count < word_count; loop_count++) // Trying with each word we have in the dictionary one by one.
+        {
+            if (compare(word, list1[loop_count].word) == 1)
+            {
+                list1[loop_count].occurrence++; // If found, increase by one.
+            }
+        }
+    }
+
+    fclose(fp);
 }
