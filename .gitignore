@@ -1,7 +1,10 @@
 # Ignore all files in the .idea directory
-/.idea/
+/.idea/                 # CLion’s project settings (local to your machine)
+
+# Ignore the binaries
+/work/bin/              # Compiled executables go here
 
 # Ignore certain other files related to CMake or CLion
-CMakeLists.txt.user
-cmake-build-debug/
-cmake-build-release/
+CMakeLists.txt.user     # CLion’s personal CMake settings
+cmake-build-debug/      # Build directory for Debug
+cmake-build-release/    # Build directory for Release
