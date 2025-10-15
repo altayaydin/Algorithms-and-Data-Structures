@@ -5,6 +5,6 @@
 /work/bin/              # Compiled executables go here
 
 # Ignore certain other files related to CMake or CLion
-CMakeLists.txt.user     # CLion’s personal CMake settings
+CMakeLists.txt/         # CLion’s personal CMake settings
 cmake-build-debug/      # Build directory for Debug
 cmake-build-release/    # Build directory for Release
